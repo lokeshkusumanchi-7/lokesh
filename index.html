@@ -38,7 +38,19 @@
     .event h3 {
       margin: 0 0 5px;
     }
-
+    button {
+      display: block;
+      margin: 15px auto;
+      padding: 15px 25px;
+      font-size: 1.1em;
+      max-width:300px;
+      background-color: #ff85a2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
     /* Slideshow Styles */
     .slideshow-container {
       max-width: 400px;
@@ -69,6 +81,50 @@
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
+    }.story {
+      display: none;
+      margin: 10px auto 30px;
+      max-width: 600px;
+      font-size: 1.1em;
+      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    #continue {
+      display: none;
+      background-color: #6a89cc;
+    }
+    @media screen and (max-width: 720px) and (min-width: 420px) {
+        .story {
+  width: 300px; 
+  height: 200px; 
+  overflow: hidden; 
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+photo {
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+}
+    }
+
+    @media screen and (max-width: 420px) {
+        .story {
+  width: 300px;   height: 200px; 
+  overflow: hidden; 
+  display: none; 
+  justify-content: center;
+  align-items: center;
+}
+
+photo {
+  max-width: 100%;  max-height: 100%; 
+  object-fit: contain; 
+}
     }
   </style>
 </head>
@@ -79,18 +135,33 @@
 
   <!-- Timeline -->
   <div class="timeline">
-    <div class="event">
-      <h3>💑 First Message</h3>
+    <div class="event" >
+      <button onclick="reveal('msg')">💑 First Message</button>  
       <p>We met, and the world got a little brighter.</p>
-    </div>
+      <div id="msg" class="story" style="color: #ff85a2;">
+        First message 
+        hello madam gurtundha first message eppudu exchange ayyindho 🧐
+        neeku gurthuku vunte nen shock avtha le , 
+        may 9th 2020 😌 , tamari birthday ani lukesh gadu create chesina group lo msg unte prsnl ga message chesa 🤧 appudu modalu ayyindhi .
+        abbo hi andi tho start chesa anuko 😅  neeku antha respect ivvakrledhu le pandhi 🐷. 
+        completing 5 years ! choddam ekkada varaku veltadho ! 🙃  </div>
+       </div>
     <div class="event">
-      <h3>💌 First day with you</h3>
+      <button onclick="reveal('meet')">💑 First Meet🥳 </button>
       <p>The moment my heart spoke out loud.</p>
+      <div id="meet" class="story" style="color: #ff85a2;">
+        Favorite day 
+        chala sarlu kalisam kani eppudu the best feel raledhu 😂 , but may 27th after the advanced exam appati varaku hostel lo undi intiki vachi racha racha cheddam anukunnav 😅 aa roju neetho spend chesina time matram unforgettable asalu 💗 best time ever had madam tho ( sorry old Pavithra tho 😉 ) 
+        inka chala sarlu kalisam but antha time spend cheyyadam was awesome chala sollu matladukunnam 🫠 . I still remember your eyes on that day ! 😁 ofc na fav part ela marchipotha le 😂  </div>
+    
     </div>
     <div class="event">
-      <h3>📸 Favorite Memory</h3>
+      <button onclick="reveal('memory')">🌅 Favorite Memory</button>
       <p>That day at the beach, laughing endlessly.</p>
-    </div>
+    </div><div id="memory" class="story">
+      <img src="WhatsApp Image 2025-05-05 at 10.25.36_3e8da5e2.jpg"style="min-width:270px;max-width: 600px;height:auto;" class="photo">  
+   </div>
+  
   </div>
 
   <!-- Background Music -->
@@ -131,21 +202,25 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // Image Slideshow
-    let slideIndex = 0;
-    const slides = document.getElementsByClassName("slide");
+    
+    let revealed = {
+      msg: false,
+      meet: false,
+      memory: false
+    };
 
-    function showSlides() {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 3000); // change image every 3 seconds
+    function reveal(id) {
+      document.getElementById(id).style.display = 'block';
+      revealed[id] = true;
+      checkAllRevealed();
     }
 
-    showSlides();
+    function checkAllRevealed() {
+      if (revealed.msg && revealed.meet && revealed.memory) {
+        document.getElementById("continue").style.display = 'inline-block';
+      }
+    }
+
   </script>
 
 </body>
