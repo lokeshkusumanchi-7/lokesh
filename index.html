@@ -13,6 +13,38 @@
       padding: 50px 20px;
       overflow-x: hidden;
     }
+
+    /* Intro screen */
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #ffc3a0, #ffafbd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: introFade 3s ease-in-out forwards;
+    }
+
+    #intro-screen h2 {
+      font-size: 3em;
+      color: white;
+      animation: popIn 1.5s ease-out;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes introFade {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
     h1 {
       font-size: 2.5em;
       animation: fadeInDown 1.5s ease-in-out;
@@ -43,7 +75,7 @@
       margin: 15px auto;
       padding: 15px 25px;
       font-size: 1.1em;
-      max-width:300px;
+      max-width: 300px;
       background-color: #ff85a2;
       color: white;
       border: none;
@@ -51,7 +83,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-    /* Slideshow Styles */
+
     .slideshow-container {
       max-width: 400px;
       margin: 30px auto;
@@ -61,13 +93,13 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.3);
       animation: fadeIn 3s ease-in-out;
     }
+
     .slideshow-container img {
       width: 100%;
       display: none;
       border-radius: 15px;
     }
 
-    /* Animations */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-40px); }
       to { opacity: 1; transform: translateY(0); }
@@ -81,7 +113,9 @@
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
-    }.story {
+    }
+
+    .story {
       display: none;
       margin: 10px auto 30px;
       max-width: 600px;
@@ -91,91 +125,100 @@
       border-radius: 10px;
       object-fit: contain;
     }
+
     #continue {
       display: none;
       background-color: #6a89cc;
     }
-    @media screen and (max-width: 720px) and (min-width: 420px) {
-        .story {
-  width: 300px; 
-  height: 200px; 
-  overflow: hidden; 
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
 
-photo {
-  max-width: 100%; 
-  max-height: 100%; 
-  object-fit: contain; 
-}
-    }
+    @media screen and (max-width: 720px) and (min-width: 420px),
+           screen and (max-width: 420px) {
+      .story {
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
 
-    @media screen and (max-width: 420px) {
-        .story {
-  width: 300px;   height: 200px; 
-  overflow: hidden; 
-  display: none; 
-  justify-content: center;
-  align-items: center;
-}
-
-photo {
-  max-width: 100%;  max-height: 100%; 
-  object-fit: contain; 
-}
+      photo {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Counting Down to Your Special Day 🎉</h1>
-  <div id="timer">Loading...</div>
-
-  <!-- Timeline -->
-  <div class="timeline">
-    <div class="event" >
-      <button onclick="reveal('msg')">💑 First Message</button>  
-      <p>We met, and the world got a little brighter.</p>
-      <div id="msg" class="story" style="color: #ff85a2;">
-        First message 
-        hello madam gurtundha first message eppudu exchange ayyindho 🧐
-        neeku gurthuku vunte nen shock avtha le , 
-        may 9th 2020 😌 , tamari birthday ani lukesh gadu create chesina group lo msg unte prsnl ga message chesa 🤧 appudu modalu ayyindhi .
-        abbo hi andi tho start chesa anuko 😅  neeku antha respect ivvakrledhu le pandhi 🐷. 
-        completing 5 years ! choddam ekkada varaku veltadho ! 🙃  </div>
-       </div>
-    <div class="event">
-      <button onclick="reveal('meet')">💑 First Meet🥳 </button>
-      <p>The moment my heart spoke out loud.</p>
-      <div id="meet" class="story" style="color: #ff85a2;">
-        Favorite day 
-        chala sarlu kalisam kani eppudu the best feel raledhu 😂 , but may 27th after the advanced exam appati varaku hostel lo undi intiki vachi racha racha cheddam anukunnav 😅 aa roju neetho spend chesina time matram unforgettable asalu 💗 best time ever had madam tho ( sorry old Pavithra tho 😉 ) 
-        inka chala sarlu kalisam but antha time spend cheyyadam was awesome chala sollu matladukunnam 🫠 . I still remember your eyes on that day ! 😁 ofc na fav part ela marchipotha le 😂  </div>
-    
-    </div>
-    <div class="event">
-      <button onclick="reveal('memory')">🌅 Favorite Memory</button>
-      <p>That day at the beach, laughing endlessly.</p>
-    </div><div id="memory" class="story">
-      <img src="WhatsApp Image 2025-05-05 at 10.25.36_3e8da5e2.jpg"style="min-width:270px;max-width: 600px;height:auto;" class="photo">  
-   </div>
-  
+  <!-- Intro screen -->
+  <div id="intro-screen">
+    <h2>Hello cutie 💕</h2>
   </div>
 
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="background.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Main content wrapper -->
+  <div id="main-content" style="display:none;">
 
-  <!-- Optional Redirect Notice -->
-  <p id="redirect-note" style="display: none;">Redirecting to your surprise... 🎁</p>
+    <h1>Counting Down to Your Special Day 🎉</h1>
+    <div id="timer">Loading...</div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="event">
+        <button onclick="reveal('msg')">💑 First Message</button>  
+        <p>We met, and the world got a little brighter.</p>
+        <div id="msg" class="story" style="color: #ff85a2;">
+          First message 
+          hello madam gurtundha first message eppudu exchange ayyindho 🧐
+          neeku gurthuku vunte nen shock avtha le , 
+          may 9th 2020 😌 , tamari birthday ani lukesh gadu create chesina group lo msg unte prsnl ga message chesa 🤧 appudu modalu ayyindhi .
+          abbo hi andi tho start chesa anuko 😅  neeku antha respect ivvakrledhu le pandhi 🐷. 
+          completing 5 years ! choddam ekkada varaku veltadho ! 🙃
+        </div>
+      </div>
+
+      <div class="event">
+        <button onclick="reveal('meet')">💑 First Meet🥳 </button>
+        <p>The moment my heart spoke out loud.</p>
+        <div id="meet" class="story" style="color: #ff85a2;">
+          Favorite day 
+          chala sarlu kalisam kani eppudu the best feel raledhu 😂 , but may 27th after the advanced exam appati varaku hostel lo undi intiki vachi racha racha cheddam anukunnav 😅 aa roju neetho spend chesina time matram unforgettable asalu 💗 best time ever had madam tho ( sorry old Pavithra tho 😉 ) 
+          inka chala sarlu kalisam but antha time spend cheyyadam was awesome chala sollu matladukunnam 🫠 . I still remember your eyes on that day ! 😁 ofc na fav part ela marchipotha le 😂 
+        </div>
+      </div>
+
+      <div class="event">
+        <button onclick="reveal('memory')">🌅 Favorite Memory</button>
+        <p>That day at the beach, laughing endlessly.</p>
+        <div id="memory" class="story">
+          <img src="WhatsApp Image 2025-05-05 at 10.25.36_3e8da5e2.jpg" style="min-width:270px;max-width: 600px;height:auto;" class="photo">  
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio autoplay loop>
+      <source src="background.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Optional Redirect Notice -->
+    <p id="redirect-note" style="display: none;">Redirecting to your surprise... 🎁</p>
+
+  </div> <!-- End of main-content -->
 
   <!-- Scripts -->
   <script>
-    // Countdown Timer + Redirect
+    // Intro animation transition
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('intro-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      }, 3000);
+    };
+
+    // Countdown Timer
     const targetDate = new Date("2025-05-09T00:00:00").getTime();
 
     function updateTimer() {
@@ -202,7 +245,7 @@ photo {
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    
+    // Reveal story sections
     let revealed = {
       msg: false,
       meet: false,
@@ -220,8 +263,6 @@ photo {
         document.getElementById("continue").style.display = 'inline-block';
       }
     }
-
   </script>
-
 </body>
 </html>
