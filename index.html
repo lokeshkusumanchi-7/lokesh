@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown to Her Day 💖</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.5em;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+    #timer {
+      font-size: 2em;
+      margin: 20px 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .timeline {
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: left;
+      animation: fadeInUp 2s ease-in-out;
+    }
+    .event {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid white;
+      border-radius: 5px;
+    }
+    .event h3 {
+      margin: 0 0 5px;
+    }
+
+    /* Slideshow Styles */
+    .slideshow-container {
+      max-width: 400px;
+      margin: 30px auto;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      animation: fadeIn 3s ease-in-out;
+    }
+    .slideshow-container img {
+      width: 100%;
+      display: none;
+      border-radius: 15px;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Counting Down to Your Special Day 🎉</h1>
+  <div id="timer">Loading...</div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="event">
+      <h3>💑 First Message</h3>
+      <p>We met, and the world got a little brighter.</p>
+    </div>
+    <div class="event">
+      <h3>💌 First day with you</h3>
+      <p>The moment my heart spoke out loud.</p>
+    </div>
+    <div class="event">
+      <h3>📸 Favorite Memory</h3>
+      <p>That day at the beach, laughing endlessly.</p>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="background.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Optional Redirect Notice -->
+  <p id="redirect-note" style="display: none;">Redirecting to your surprise... 🎁</p>
+
+  <!-- Scripts -->
+  <script>
+    // Countdown Timer + Redirect
+    const targetDate = new Date("2025-05-09T00:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("redirect-note").style.display = "block";
+        setTimeout(() => {
+          window.location.href = "main.html";
+        }, 2000);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // Image Slideshow
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000); // change image every 3 seconds
+    }
+
+    showSlides();
+  </script>
+
+</body>
+</html>
